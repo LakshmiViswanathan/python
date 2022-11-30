@@ -1,9 +1,9 @@
-/* Bordered form */
+
 form {
   border: 3px solid #f1f1f1;
 }
 
-/* Full-width inputs */
+
 input[type=text], input[type=password] {
   width: 100%;
   padding: 12px 20px;
@@ -13,7 +13,7 @@ input[type=text], input[type=password] {
   box-sizing: border-box;
 }
 
-/* Set a style for all buttons */
+
 button {
   background-color: #04AA6D;
   color: white;
@@ -24,7 +24,7 @@ button {
   width: 100%;
 }
 
-/* Add a hover effect for buttons */
+
 button:hover {
   opacity: 0.8;
 }
