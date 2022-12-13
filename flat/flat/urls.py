@@ -25,6 +25,7 @@ urlpatterns = [
     path('contact', views.contact, name="contact"),
     path('handle_contact', views.handle_contact, name="handle_contact"),
     path('logout', views.mylogout, name="logout"),
+    
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
