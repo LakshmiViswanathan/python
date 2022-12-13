@@ -1,4 +1,5 @@
 from django.shortcuts import render, HttpResponse,redirect
+from django.contrib.auth import authenticate, logout
 from service.models import Service
 from contact.models import Contact
 
@@ -33,3 +34,7 @@ def handle_contact(request):
         c= Contact(name=name, email=email, subject=subject, message=msg)
         c.save()
         return redirect('contact')
+
+def mylogout(request):
+    logout(request)
+    return redirect('home')
