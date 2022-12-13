@@ -2,6 +2,8 @@ from django.shortcuts import render, HttpResponse,redirect
 from django.contrib.auth import authenticate, logout
 from service.models import Service
 from contact.models import Contact
+from land.models import Room
+
 
 
 def index(request):
@@ -38,3 +40,10 @@ def handle_contact(request):
 def mylogout(request):
     logout(request)
     return redirect('home')
+def detail(request):
+    if request.method=="POST":
+        pk=request.POST.get('pk')
+        r=Room.objects.get(pk=pk)     
+      
+    # return HttpResponse('Hello')
+        return render(request, 'detail.html', {'r':r})    
