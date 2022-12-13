@@ -2,7 +2,7 @@ from django.shortcuts import render, HttpResponse,redirect
 from django.contrib.auth import authenticate, logout
 from service.models import Service
 from contact.models import Contact
-
+from land.models import Room
 
 def index(request):
     # return HttpResponse('Hello')
