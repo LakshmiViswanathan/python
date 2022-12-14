@@ -39,6 +39,8 @@ urlpatterns = [
     path('delete_ads', views.delete_ads, name="delete_ads"),
     path('edit_ads', views.edit_ads, name="edit_ads"),
     path('handle_edit_ads', views.handle_edit_ads, name="handle_edit_ads"),
+    path('service', views.service, name='service'),
+    path('show_service', views.show_service, name='show_service'),
     
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

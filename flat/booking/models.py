@@ -16,3 +16,4 @@ class Book(models.Model):
     noa = models.CharField(max_length=50, default='abc')
     noc = models.CharField(max_length=50, default='abc')
     sr = models.CharField(max_length=50, default='abc')
+
