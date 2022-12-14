@@ -361,8 +361,8 @@ def detail(request):
         r=Room.objects.get(pk=pk)
         eir=r.eircode
         nomi=pgeocode.Nominatim('ie')
-        lat=nomi.query_postal_code(eir).latitude
-        long=nomi.query_postal_code(eir).longitude
+    #    lat=nomi.query_postal_code(eir).latitude
+    #   long=nomi.query_postal_code(eir).longitude
     # return HttpResponse('Hello')
         return render(request, 'detail.html', {'r':r,})
  
