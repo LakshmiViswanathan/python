@@ -22,13 +22,22 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name="home"),
+    path('about', views.about, name="about"),
     path('contact', views.contact, name="contact"),
     path('handle_contact', views.handle_contact, name="handle_contact"),
+    path('all_flats', views.all_flats, name="all_flats"),
+    path('login', views.login, name="login"),
+    path('signup', views.signup, name="signup"),
+    path('error', views.error, name="error"), 
     path('logout', views.mylogout, name="logout"),
     path('land-detail', views.detail, name="detail"),
     path('location', views.location, name="location"),
+    path('handle_signup', views.handle_signup, name="handle_signup"),
+    path('handle_login', views.handle_login, name="handle_login"),
     path('handle_add_booking', views.handle_add_booking, name="handle_add_booking"),
     path('delete_booking', views.delete_booking, name="delete_booking"),
+    path('user_panel', views.user_panel, name="user_panel"),
+    path('user_login', views.user_login, name="user_login"),
     path('delete_booking_user', views.delete_booking_user, name="delete_booking_user"),
     path('edit_booking_user', views.edit_booking_user, name="edit_booking_user"),
     path('handle_edit_booking', views.handle_edit_booking, name="handle_edit_booking"),
@@ -42,6 +51,9 @@ urlpatterns = [
     path('handle_edit_ads', views.handle_edit_ads, name="handle_edit_ads"),
     path('service', views.service, name='service'),
     path('show_service', views.show_service, name='show_service'),
+    path('handle_change_pass', views.handle_change_pass, name="handle_change_pass"),
+    path('user_change_pass', views.user_change_pass, name="user_change_pass"),
+    path('handle_user_login', views.handle_user_login, name="handle_user_login"),
     
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

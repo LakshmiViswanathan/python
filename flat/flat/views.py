@@ -145,6 +145,17 @@ def delete_booking_user(request):
     else:
         return redirect('home')
 
+def user_panel(request):
+    if request.user.is_authenticated:
+        try:
+
+            r=Book.objects.filter(booking_username=request.user.username)
+            return render(request, "user/index.html", {'r':r})
+        except:         
+            return render(request, "user/index.html")
+    else:
+        return redirect('home')
+
 def seller_change_pass(request):
     return render(request, 'seller/change_pass.html')
 
@@ -347,13 +358,6 @@ def mylogout(request):
 def detail(request):
     if request.method=="POST":
         pk=request.POST.get('pk')
-        r=Room.objects.get(pk=pk)     
-      
-    # return HttpResponse('Hello')
-        return render(request, 'detail.html', {'r':r})  
-def detail(request):
-    if request.method=="POST":
-        pk=request.POST.get('pk')
         r=Room.objects.get(pk=pk)
         eir=r.eircode
         nomi=pgeocode.Nominatim('ie')
@@ -379,3 +383,39 @@ def handle_login(request):
     
     else:
         return redirect('contact')  
+
+def handle_change_pass(request):
+    if request.method=='POST':
+        u=User.objects.get(pk=request.user.pk)
+        pass1=request.POST.get('pass')
+        u.set_password(pass1)
+        u.save()
+        return redirect('home')
+
+def user_change_pass(request):
+    return render(request, 'user/change_pass.html') 
+
+def user_login(request):
+    return render(request, 'user/login.html')
+
+def handle_user_login(request):
+    if request.method=='POST':
+        u_name = request.POST.get('username')
+        password = request.POST.get('pass')
+        
+        myuser= authenticate(username=u_name, password=password)
+        if myuser is not None:
+            mylogin(request, myuser)
+            # return render(request, 'seller/index.html')
+            return redirect('user_panel')
+        else:
+            e='Enter Valid Creditentials'
+            return render(request, 'user/404.html', {'e':e}) 
+    
+    else:
+        return redirect('contact')
+
+def all_flats(request):
+    r = Room.objects.all()
+    # return HttpResponse('Hello')
+    return render(request, 'all_flats.html', {'r':r}) 
