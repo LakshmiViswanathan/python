@@ -144,6 +144,126 @@ def delete_booking_user(request):
 def seller_change_pass(request):
     return render(request, 'seller/change_pass.html')
 
+def post_ad(request):
+    if request.user.is_authenticated:
+        # a=Activation.objects.get(user_id=request.user.pk)
+        return render(request, "seller/post_ad.html")    
+    else:
+        return redirect('home')
+
+
+def handle_post_ad(request):
+    if request.user.is_authenticated:
+        if request.method=='POST':
+            r_t = request.POST.get('r_t')
+            street=request.POST.get('street')
+            r_a = request.POST.get('r_a')
+            eir=request.POST.get('eir')
+            mobile = request.POST.get('mobile')
+            image = request.FILES['image']
+            rent = request.POST.get('rent')
+            desc = request.POST.get('desc')
+            if len(mobile)>10:
+                e='Enter Correct Mobile Number'
+                return render(request, 'seller/404.html', {'e':e})
+
+            r= Room(user_id=request.user.pk, room_type=r_t, street=street, room_address=r_a, eircode=eir, number=mobile, image=image, rent=rent, desc=desc)
+            r.save()
+            # myuser= authenticate(username=u_name, password=password)
+            # if myuser is not None:
+            #     mylogin(request, myuser)
+            #     # return render(request, 'seller/index.html')
+            #     return redirect('seller_panel')
+            # else:
+            return redirect('seller_panel')
+        
+        else:
+            return redirect('contact')
+        # a=Activation.objects.get(user_id=request.user.pk)
+        # return render(request, "seller/post_ad.html")    
+    else:
+        return redirect('home') 
+
+def my_ads(request):
+    if request.user.is_authenticated:
+        r = Room.objects.filter(user_id=request.user.pk)
+        return render(request, "seller/my_ads.html", {'r':r})    
+    else:
+        return redirect('home')
+
+def delete_ads(request):
+    if request.user.is_authenticated:
+        if request.method=="POST":
+            pk=request.POST.get('pk')
+            r = Room.objects.get(pk=pk)
+            r.delete()
+            return redirect('my_ads')    
+    else:
+        return redirect('home')      
+
+def edit_ads(request):
+    if request.user.is_authenticated:
+        if request.method=='POST':
+            pk=request.POST.get('pk')
+            r = Room.objects.get(pk=pk)
+            return render(request, "seller/edit_ads.html", {'r':r})    
+    else:
+        return redirect('home')
+        
+def handle_edit_ads(request):
+    if request.user.is_authenticated:
+        if request.method=='POST':
+            pk=request.POST.get('pk')
+            r_t = request.POST.get('r_t')
+            street=request.POST.get('street')
+            r_a = request.POST.get('r_a')
+            eir=request.POST.get('eir')
+            mobile = request.POST.get('mobile')
+            image = request.FILES['image']
+            # print(image)
+            rent = request.POST.get('rent')
+            desc = request.POST.get('desc')
+            if len(mobile)>10:
+                e='Enter Correct Mobile Number'
+                return render(request, 'seller/404.html', {'e':e})
+            if image == "":
+                r=Room.objects.get(pk=pk)
+                r.room_type=r_t
+                r.street=street
+                r.room_address=r_a
+                r.eircode=eir
+                r.number=mobile
+                r.image=r.image
+                r.rent=rent
+                r.desc=desc
+                r.save()
+            else:
+                r=Room.objects.get(pk=pk)
+                r.room_type=r_t
+                r.street=street
+                r.room_address=r_a
+                r.eircode=eir
+                r.number=mobile
+                r.image=image
+                r.rent=rent
+                r.desc=desc
+                r.save()
+            # myuser= authenticate(username=u_name, password=password)
+            # if myuser is not None:
+            #     mylogin(request, myuser)
+            #     # return render(request, 'seller/index.html')
+            #     return redirect('seller_panel')
+            # else:
+            return redirect('seller_panel')
+        
+        else:
+            return redirect('contact')
+        # a=Activation.objects.get(user_id=request.user.pk)
+        # return render(request, "seller/post_ad.html")    
+    else:
+        return redirect('home')
+
+
 def edit_booking_user(request):
     if request.user.is_authenticated:
         if request.method=='POST':

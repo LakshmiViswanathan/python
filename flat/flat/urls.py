@@ -33,6 +33,12 @@ urlpatterns = [
     path('handle_edit_booking', views.handle_edit_booking, name="handle_edit_booking"),
     path('seller_change_pass', views.seller_change_pass, name="seller_change_pass"),
     path('seller_panel', views.seller_panel, name="seller_panel"),
+    path('post_ad', views.post_ad, name="post_ad"),
+    path('handle_post_ad', views.handle_post_ad, name="handle_post_ad"),
+    path('my_ads', views.my_ads, name="my_ads"),
+    path('delete_ads', views.delete_ads, name="delete_ads"),
+    path('edit_ads', views.edit_ads, name="edit_ads"),
+    path('handle_edit_ads', views.handle_edit_ads, name="handle_edit_ads"),
     
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
