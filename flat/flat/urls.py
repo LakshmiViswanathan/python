@@ -26,6 +26,7 @@ urlpatterns = [
     path('handle_contact', views.handle_contact, name="handle_contact"),
     path('logout', views.mylogout, name="logout"),
     path('land-detail', views.detail, name="detail"),
+    path('location', views.location, name="location"),
     path('handle_add_booking', views.handle_add_booking, name="handle_add_booking"),
     path('delete_booking', views.delete_booking, name="delete_booking"),
     path('delete_booking_user', views.delete_booking_user, name="delete_booking_user"),

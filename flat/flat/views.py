@@ -6,6 +6,7 @@ from land.models import Room
 from booking.models import Book
 from django.contrib.auth import login as mylogin
 from django.contrib.auth.models import User
+import pgeocode
 
 
 def index(request):
@@ -29,6 +30,9 @@ def show_service(request):
         pk=request.POST.get('pk')
         s=Service.objects.get(pk=pk)
         return render(request, 'show_service.html', {'s':s}) 
+
+def location(request):
+    return render(request, 'location.html')
 
 def handle_add_booking(request):
     if request.user.is_authenticated:
@@ -209,7 +213,7 @@ def edit_ads(request):
             return render(request, "seller/edit_ads.html", {'r':r})    
     else:
         return redirect('home')
-        
+
 def handle_edit_ads(request):
     if request.user.is_authenticated:
         if request.method=='POST':
@@ -346,7 +350,18 @@ def detail(request):
         r=Room.objects.get(pk=pk)     
       
     # return HttpResponse('Hello')
-        return render(request, 'detail.html', {'r':r})   
+        return render(request, 'detail.html', {'r':r})  
+def detail(request):
+    if request.method=="POST":
+        pk=request.POST.get('pk')
+        r=Room.objects.get(pk=pk)
+        eir=r.eircode
+        nomi=pgeocode.Nominatim('ie')
+        lat=nomi.query_postal_code(eir).latitude
+        long=nomi.query_postal_code(eir).longitude
+    # return HttpResponse('Hello')
+        return render(request, 'detail.html', {'r':r,})
+ 
 
 def handle_login(request):
     if request.method=='POST':
