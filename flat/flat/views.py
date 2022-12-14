@@ -4,12 +4,19 @@ from service.models import Service
 from contact.models import Contact
 from land.models import Room
 from booking.models import Book
+from django.contrib.auth import login as mylogin
+from django.contrib.auth.models import User
 
 
 def index(request):
-    # return HttpResponse('Hello')
     s=Service.objects.all()
-    return render(request, 'index.html', {'s':s})
+    r = Room.objects.all()
+    # return HttpResponse('Hello')
+    return render(request, 'index.html', {'r':r, 's':s})
+
+def about(request):
+    # return HttpResponse('Hello')
+    return render(request, 'about.html')
 
 def service(request):
     # return HttpResponse('Hello')
@@ -52,6 +59,67 @@ def handle_add_booking(request):
         e='Please Login Before Ordering'
         return render(request, 'seller/404.html', {'e':e})
 
+def login(request):
+    return render(request, "seller/login.html") 
+
+def signup(request):
+    return render(request, "seller/register.html")
+
+def error(request):
+    return render(request, 'seller/404.html')  
+
+def handle_signup(request):
+    if request.method=='POST':
+        f_name = request.POST.get('fname')
+        l_name = request.POST.get('lname')
+        # l_name = request.POST.get('l_name')
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        # r_username = request.POST.get('r_username')
+        pass1 = request.POST.get('pass1')
+        pass2 = request.POST.get('pass2')
+
+        if pass1!=pass2:
+            e='Passwords are not matched'
+            return render(request, 'seller/404.html', {'e':e})
+
+        if len(f_name)<3:
+            e='First name Should Be Greater Than 2 Characters'
+            return render(request, 'seller/404.html', {'e':e})
+
+        if len(l_name)<3:
+            e='Last name Should Be Greater Than 2 Characters'
+            return render(request, 'seller/404.html', {'e':e})    
+
+        if len(username)<5:
+            e='Username Should Be Greater Than 4 Characters'
+            return render(request, 'seller/404.html', {'e':e})
+
+        if len(pass1)<8:
+            e='Password Should Be Greater Than 7 Characters'
+            return render(request, 'seller/404.html', {'e':e})    
+
+        user_confirm =  User.objects.all()
+        for user in user_confirm:
+            if username == user.get_username():
+                return redirect('contact')
+                          
+
+        user = User.objects.create_user(username ,email, pass1)
+        user.first_name= f_name
+        user.last_name= l_name 
+        user.save()
+    return redirect('home')  
+
+def seller_panel(request):
+    if request.user.is_authenticated:
+        try:
+            r=Book.objects.filter(user_id=request.user.pk)
+            return render(request, "seller/index.html", {'r':r})
+        except:         
+            return render(request, "seller/index.html")
+    else:
+        return redirect('home')
 
 def delete_booking(request):
     if request.user.is_authenticated:
@@ -72,6 +140,9 @@ def delete_booking_user(request):
             return redirect('user_panel')    
     else:
         return redirect('home')
+
+def seller_change_pass(request):
+    return render(request, 'seller/change_pass.html')
 
 def edit_booking_user(request):
     if request.user.is_authenticated:
@@ -148,10 +219,28 @@ def handle_contact(request):
 def mylogout(request):
     logout(request)
     return redirect('home')
+
 def detail(request):
     if request.method=="POST":
         pk=request.POST.get('pk')
         r=Room.objects.get(pk=pk)     
       
     # return HttpResponse('Hello')
-        return render(request, 'detail.html', {'r':r})    
+        return render(request, 'detail.html', {'r':r})   
+
+def handle_login(request):
+    if request.method=='POST':
+        u_name = request.POST.get('username')
+        password = request.POST.get('pass')
+        
+        myuser= authenticate(username=u_name, password=password)
+        if myuser is not None:
+            mylogin(request, myuser)
+            # return render(request, 'seller/index.html')
+            return redirect('seller_panel')
+        else:
+            e='Enter Valid Creditentials'
+            return render(request, 'seller/404.html', {'e':e}) 
+    
+    else:
+        return redirect('contact')  

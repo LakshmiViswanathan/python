@@ -31,6 +31,8 @@ urlpatterns = [
     path('delete_booking_user', views.delete_booking_user, name="delete_booking_user"),
     path('edit_booking_user', views.edit_booking_user, name="edit_booking_user"),
     path('handle_edit_booking', views.handle_edit_booking, name="handle_edit_booking"),
+    path('seller_change_pass', views.seller_change_pass, name="seller_change_pass"),
+    path('seller_panel', views.seller_panel, name="seller_panel"),
     
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
