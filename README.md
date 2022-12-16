@@ -96,3 +96,97 @@ Technology and Libraries used:
 •	Postman
 
 
+Front End Link for Template - https://www.free-css.com/free-css-templates/page282/royal-cars
+
+For User and Seller Panel - https://startbootstrap.com/template-overviews/sb-admin/            
+
+# [Start Bootstrap - SB Admin] (https://startbootstrap.com/template-overviews/sb-admin/)
+
+[SB Admin] (http://startbootstrap.com/template-overviews/sb-admin/) is an open source, admin dashboard template for [Bootstrap](http://getbootstrap.com/) created by [Start Bootstrap] (http://startbootstrap.com/).
+
+## Status
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/BlackrockDigital/startbootstrap-sb-admin/master/LICENSE)
+[![npm version](https://img.shields.io/npm/v/startbootstrap-sb-admin.svg)](https://www.npmjs.com/package/startbootstrap-sb-admin)
+[![Build Status](https://travis-ci.org/BlackrockDigital/startbootstrap-sb-admin.svg?branch=master)](https://travis-ci.org/BlackrockDigital/startbootstrap-sb-admin)
+[![dependencies Status](https://david-dm.org/BlackrockDigital/startbootstrap-sb-admin/status.svg)](https://david-dm.org/BlackrockDigital/startbootstrap-sb-admin)
+[![devDependencies Status](https://david-dm.org/BlackrockDigital/startbootstrap-sb-admin/dev-status.svg)](https://david-dm.org/BlackrockDigital/startbootstrap-sb-admin?type=dev)
+
+## Download and Installation
+
+To begin using this template, choose one of the following options to get started:
+* [Download the latest release on Start Bootstrap] (https://startbootstrap.com/template-overviews/sb-admin/)
+* Install via npm: `npm i startbootstrap-sb-admin`
+* Clone the repo: `git clone https://github.com/BlackrockDigital/startbootstrap-sb-admin.git`
+* [Fork, Clone, or Download on GitHub](https://github.com/BlackrockDigital/startbootstrap-sb-admin)
+
+## Usage
+
+After downloading, simply edit the HTML and CSS files included with the template in your favorite text editor to make changes. These are the only files you need to worry about, you can ignore everything else! To preview the changes, you make to the code, you can open the `index.html` file in your web browser.
+
+## About
+
+Start Bootstrap is an open-source library of free Bootstrap templates and themes. All of the free templates and themes on Start Bootstrap are released under the MIT license, which means you can use them for any purpose, even for commercial projects.
+
+* https://startbootstrap.com 
+* https://twitter.com/SBootstrap
+
+## Copyright and License
+
+Copyright 2013-2018 Blackrock Digital LLC. Code released under the [MIT](https://github.com/BlackrockDigital/startbootstrap-sb-admin/blob/gh-pages/LICENSE) license.
+
+Setup GIT
+git clone ' https://github.com/LakshmiViswanathan/python’
+
+
+Setup Django
+Install the latest Django version 
+pip install django
+
+Setting up VS code
+Clone the project from repo and import it into VS code and execute the following commands
+Starting Project:  django-admin startproject projectname
+Creating migration for sql:  python manage.py makemigrations	
+Applying migration to create tables:  python manage.py migrate
+StartApp inside the project:   python manage.py startapp appname
+Creating Admin Panel:   python manage.py createsuperuser
+Running Project:   python manage.py runserver
+
+@LakshmiViswanathan
+App – Service
+flat/service/admin.py
+flat/service/models.py
+flat/flat/settings.py 
+flat/flat/urls.py 
+flat/flat/views.py <home, service, show service>
+Integrated the HTML templates
+
+@nadiyaravi
+App - contact
+flat/flat/settings.py 
+flat/flat/urls.py 
+flat/flat/views.py < handle_contact >
+flat/templates/seller/base.html 
+flat/contact/admin.py
+flat/contact/models.py
+
+@Jagthemag
+App - Booking
+flat/flat/views.py < handle_app_booking , edit_booking_user, handle_edit_booking, delete_booking , delete_booking_user >
+flat/flat/urls.py 
+flat/booking/admin.py
+flat/booking/models.py
+Integrated seller and user templates
+flat/flat/settings.py 
+
+
+@Jayanth005
+App - Land
+flat/flat/settings.py 
+flat/flat/urls.py 
+flat/flat/views.py <location details, flat details, addition, deletion and editing of ads>
+flat/templates/seller/edit_ads.html 
+flat/templates/seller/post_ad.html 
+flat/land/models.py
+flat/land/admin.py
+
+
