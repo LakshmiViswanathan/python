@@ -134,15 +134,15 @@ Start Bootstrap is an open-source library of free Bootstrap templates and themes
 
 Copyright 2013-2018 Blackrock Digital LLC. Code released under the [MIT](https://github.com/BlackrockDigital/startbootstrap-sb-admin/blob/gh-pages/LICENSE) license.
 
-Setup GIT
+**Setup GIT**
 git clone ' https://github.com/LakshmiViswanathan/python’
 
 
-Setup Django
+**Setup Django**
 Install the latest Django version 
 pip install django
 
-Setting up VS code
+**Setting up VS code**
 Clone the project from repo and import it into VS code and execute the following commands
 Starting Project:  django-admin startproject projectname
 Creating migration for sql:  python manage.py makemigrations	
@@ -153,6 +153,7 @@ Running Project:   python manage.py runserver
 
 @LakshmiViswanathan
 App – Service
+
 flat/service/admin.py
 flat/service/models.py
 flat/flat/settings.py 
@@ -162,6 +163,7 @@ Integrated the HTML templates
 
 @nadiyaravi
 App - contact
+
 flat/flat/settings.py 
 flat/flat/urls.py 
 flat/flat/views.py < handle_contact >
@@ -171,6 +173,7 @@ flat/contact/models.py
 
 @Jagthemag
 App - Booking
+
 flat/flat/views.py < handle_app_booking , edit_booking_user, handle_edit_booking, delete_booking , delete_booking_user >
 flat/flat/urls.py 
 flat/booking/admin.py
@@ -181,6 +184,7 @@ flat/flat/settings.py
 
 @Jayanth005
 App - Land
+
 flat/flat/settings.py 
 flat/flat/urls.py 
 flat/flat/views.py <location details, flat details, addition, deletion and editing of ads>
